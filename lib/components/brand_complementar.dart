@@ -48,6 +48,10 @@ class BrandComplementar implements BrandScheme {
   @override
   UISchemeHueBased<int, Color> get primary => _colors[0];
 
+  /// Secondary color generated from [baseHue] using
+  /// complementar algorithm (primary rotared 180deg)
+  UISchemeHueBased<int, Color> get secondary => _colors[1];
+
   @override
   List<Object> get props => [..._colors.values];
 
