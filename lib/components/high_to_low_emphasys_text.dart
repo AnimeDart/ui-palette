@@ -3,7 +3,7 @@ import 'package:flutter/painting.dart';
 import '../config/palette_brightness.dart';
 import '../gradients/gradient_palette.dart';
 
-/// Create a Background pallete from
+/// Create a Background palette from
 /// [dpCount], [brightness], [baseHue], [variability], [range]
 class HighToLowEmphasysText extends GradientPalette {
   /// Create a background palette with [dpCount]

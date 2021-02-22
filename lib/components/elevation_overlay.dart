@@ -1,10 +1,10 @@
 import '../config/palette_brightness.dart';
 import '../gradients/gradient_palette.dart';
 
-/// Create a Background pallete from
+/// Create a Background palette from
 /// [dpCount], [brightness], [baseHue], [variability], [range]
 class ElevationOverlay extends GradientPalette {
-  /// Create a Background pallete from
+  /// Create a Background palette from
   /// [dpCount], [brightness], [baseHue], [variability], [range]
   const ElevationOverlay({
     int dpCount,

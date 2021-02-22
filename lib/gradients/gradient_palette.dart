@@ -6,7 +6,7 @@ import 'package:flutter/painting.dart';
 import '../config/palette_brightness.dart';
 import '../interfaces/ui_scheme.dart';
 
-/// Create a Background pallete from
+/// Create a Background palette from
 /// [dpCount], [brightness], [baseHue], [variability], [range]
 abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   static const _defaultDpCount = 4;

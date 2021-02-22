@@ -6,8 +6,8 @@ import '../config/palette_harmony.dart';
 /// Interface for array-like getters
 ///
 /// Background example:
-/// `pallete.background[0]` // #111111
-/// `pallete.background[1]` // #151515
+/// `palette.background[0]` // #111111
+/// `palette.background[1]` // #151515
 abstract class UIScheme<I extends Object, O extends Object> extends Equatable {
   /// Default constructor
   const UIScheme();
