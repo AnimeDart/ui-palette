@@ -9,15 +9,15 @@ enum PaletteBrightness {
 
 /// Extension to enable alias for [PaletteBrightness.values]
 extension PaletteBrightnessAlias on PaletteBrightness {
-  /// Alias for: `
+  /// Alias for:
   /// ```
-  /// value == PaletteBrightness.dark`
+  /// value == PaletteBrightness.dark
   /// ```
   bool get isDark => this == PaletteBrightness.dark;
 
-  /// Alias for: `
+  /// Alias for:
   /// ```
-  /// value == PaletteBrightness.light`
+  /// value == PaletteBrightness.light
   /// ```
   bool get isLight => this == PaletteBrightness.light;
 }
