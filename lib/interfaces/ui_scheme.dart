@@ -28,9 +28,6 @@ abstract class UISchemeHueBased<I extends Object, O extends Object>
   const UISchemeHueBased(this.baseHue);
 }
 
-/// Superclass for all text scheme implementations
-abstract class TextScheme implements UISchemeHueBased<int, Color> {}
-
 /// Superclass for all brand scheme implementations
 abstract class BrandScheme
     implements UISchemeHueBased<int, UISchemeHueBased<int, Color>> {
