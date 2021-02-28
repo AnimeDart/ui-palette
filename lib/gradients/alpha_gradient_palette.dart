@@ -12,29 +12,25 @@ abstract class AlphaGradientPalette extends GradientPalette {
     int dpCount,
     double variability,
     double offset,
+    double saturation,
   }) : super(
           baseHue: baseHue,
           brightness: brightness,
           dpCount: dpCount,
           variability: variability,
-          offset: offset ?? 0.1,
+          offset: offset ?? 0.5,
+          saturation: saturation,
         );
 
   @override
-  Color operator [](int dp) {
-    return fromDp(dp).toColor();
-  }
-
-  @override
   HSLColor fromDp(int dp) {
-    final hslResult = super.fromDp(dp);
-    final darkerResult = super.fromDp(0);
+    validateDp(dp);
 
     final hslColor = HSLColor.fromAHSL(
-      hslResult.lightness,
-      baseHue ?? 0,
-      isMonochrome ? 0 : 1,
-      darkerResult.lightness,
+      calcVariationWithBase(dp),
+      baseHue ?? 0.0,
+      saturation ?? 1,
+      calcVariationWithBase(0),
     );
 
     return hslColor;

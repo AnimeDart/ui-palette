@@ -52,6 +52,18 @@ void main() {
         throwsA(isA<AssertionError>()),
       );
     });
+    test('null values - should work with default values', () {
+      expect(
+        PaletteMock(
+          paletteBrightness: null,
+          offset: null,
+          baseHue: null,
+          dpCount: null,
+          variability: null,
+        ),
+        isA<PaletteMock>(),
+      );
+    });
   });
 }
 

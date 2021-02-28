@@ -11,10 +11,14 @@ class ElevationOverlay extends GradientPalette {
     PaletteBrightness brightness,
     double variability,
     double baseHue,
+    double offset,
+    double saturation,
   }) : super(
           dpCount: dpCount,
           brightness: brightness,
           variability: variability,
           baseHue: baseHue,
+          offset: offset,
+          saturation: saturation,
         );
 }
