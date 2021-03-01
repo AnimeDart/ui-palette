@@ -46,7 +46,7 @@ class HighToLowEmphasysText extends GradientPalette {
     return HSLColor.fromAHSL(
       1.0 - offset - diff,
       baseHue ?? 0.0,
-      0.1,
+      saturation ?? 0.1,
       brightness.isDark ? 1.0 - diff : diff,
     );
   }
