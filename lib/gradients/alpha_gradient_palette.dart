@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
-import '../config/palette_brightness.dart';
 
 import 'gradient_palette.dart';
 
@@ -8,7 +8,7 @@ abstract class AlphaGradientPalette extends GradientPalette {
   /// Generate a gradient palette that change [alpha] value for each [dp] value
   const AlphaGradientPalette({
     double baseHue,
-    PaletteBrightness brightness,
+    Brightness brightness,
     int dpCount,
     double variability,
     double offset,

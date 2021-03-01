@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:ui_palette/config/palette_brightness.dart';
 
 import 'theme/my_app_theme.dart';
 
@@ -12,20 +11,17 @@ class App extends StatefulWidget {
   App({Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _App();
-  }
+  State<StatefulWidget> createState() => _App();
 }
 
 class _App extends State<App> {
   double spacing(int spacing) => spacing * 2.0;
 
-  var _theme = MyAppTheme(brightness: PaletteBrightness.light);
+  var _theme = MyAppTheme(brightness: Brightness.light);
 
   void _toggle() {
     _theme = MyAppTheme(
-      brightness:
-          _theme.isDark ? PaletteBrightness.light : PaletteBrightness.dark,
+      brightness: _theme.isDark ? Brightness.light : Brightness.dark,
     );
     setState(() {});
   }

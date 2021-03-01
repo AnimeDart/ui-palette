@@ -3,14 +3,13 @@ import 'dart:ui';
 import 'package:meta/meta.dart';
 import 'package:flutter/painting.dart';
 
-import '../config/palette_brightness.dart';
 import '../interfaces/ui_scheme.dart';
 
 /// Create a Background palette from
 /// [dpCount], [brightness], [baseHue], [variability], [range]
 abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   static const _defaultDpCount = 4;
-  static const _defaultBrightness = PaletteBrightness.dark;
+  static const _defaultBrightness = Brightness.dark;
   static const _defaultVariability = 0.1;
   static const _defaultOffset = 0.0;
   static const _defaultSaturation = 1.0;
@@ -24,8 +23,8 @@ abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   final int _dpCount;
 
   /// Brightness for all palette colors
-  PaletteBrightness get brightness => _brightness ?? _defaultBrightness;
-  final PaletteBrightness _brightness;
+  Brightness get brightness => _brightness ?? _defaultBrightness;
+  final Brightness _brightness;
 
   /// Base [HUE] used for all computed colors,
   /// if null, the base color will be black if [brightness] is dark
@@ -37,9 +36,9 @@ abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   double get variability => _variability ?? _defaultVariability;
   final double _variability;
 
-  /// Offset of max value if brightness is [PaletteBrightness.light]
+  /// Offset of max value if brightness is [Brightness.light]
   ///
-  /// Offset of min value if brightness is [PaletteBrightness.dark]
+  /// Offset of min value if brightness is [Brightness.dark]
   double get offset => _offset ?? _defaultOffset;
   final double _offset;
 
@@ -52,7 +51,7 @@ abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   /// Create a background palette with [dpCount]
   const GradientPalette({
     int dpCount,
-    PaletteBrightness brightness,
+    Brightness brightness,
     double variability,
     double baseHue,
     double offset,
@@ -99,7 +98,7 @@ abstract class GradientPalette implements UISchemeHueBased<int, Color> {
   /// Use this find a base value of current [context]
   @protected
   double get base {
-    return brightness.isDark
+    return brightness == Brightness.dark
         ? 0.0 + offset
         : 1.0 - offset - variability * (dpCount - 1);
   }

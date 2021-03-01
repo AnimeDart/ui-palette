@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 
-import '../config/palette_brightness.dart';
 import '../gradients/gradient_palette.dart';
 
 /// Create a Background palette from
@@ -9,7 +9,7 @@ class HighToLowEmphasysText extends GradientPalette {
   /// Create a background palette with [dpCount]
   const HighToLowEmphasysText({
     int dpCount,
-    PaletteBrightness brightness,
+    Brightness brightness,
     double variability,
     double baseHue,
     double offset,
@@ -47,7 +47,7 @@ class HighToLowEmphasysText extends GradientPalette {
       1.0 - offset - diff,
       baseHue ?? 0.0,
       saturation ?? 0.1,
-      brightness.isDark ? 1.0 - diff : diff,
+      brightness == Brightness.dark ? 1.0 - diff : diff,
     );
   }
 }

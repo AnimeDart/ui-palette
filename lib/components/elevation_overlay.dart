@@ -1,4 +1,5 @@
-import '../config/palette_brightness.dart';
+import 'package:flutter/cupertino.dart';
+
 import '../gradients/gradient_palette.dart';
 
 /// Create a Background palette from
@@ -8,7 +9,7 @@ class ElevationOverlay extends GradientPalette {
   /// [dpCount], [brightness], [baseHue], [variability], [range]
   const ElevationOverlay({
     int dpCount,
-    PaletteBrightness brightness,
+    Brightness brightness,
     double variability,
     double baseHue,
     double offset,

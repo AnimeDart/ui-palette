@@ -3,12 +3,11 @@ import 'package:ui_palette/components/brand_complementar.dart';
 import 'package:ui_palette/components/elevation_overlay.dart';
 import 'package:ui_palette/components/high_to_low_emphasys_text.dart';
 import 'package:ui_palette/components/surface_scheme.dart';
-import 'package:ui_palette/config/palette_brightness.dart';
 
 class MyAppTheme {
-  final PaletteBrightness brightness;
+  final Brightness brightness;
 
-  bool get isDark => brightness.isDark;
+  bool get isDark => brightness == Brightness.dark;
 
   MyAppTheme({this.brightness})
       : brand = BrandComplementar(
@@ -43,7 +42,7 @@ class MyAppTheme {
   static const hue = 210.0;
 
   /// Create the brand color based on HUE 0 (Red)
-  /// with [PaletteBrightness.dark]
+  /// with [Brightness.dark]
   final BrandComplementar brand;
   Color get primaryColor => brand[0][0];
   Color get secondaryColor => brand[1][0];

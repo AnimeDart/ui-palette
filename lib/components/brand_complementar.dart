@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/painting.dart';
 
-import '../config/palette_brightness.dart';
 import '../config/palette_harmony.dart';
 import '../gradients/gradient_palette.dart';
 import '../interfaces/ui_scheme.dart';
@@ -14,7 +13,7 @@ class BrandComplementar implements BrandScheme {
   final double baseHue;
 
   /// Palette brightness, used for all brand colors
-  final PaletteBrightness brightness;
+  final Brightness brightness;
 
   /// [dp] count for all brand colors
   ///
@@ -97,19 +96,19 @@ class BrandComplementar implements BrandScheme {
 abstract class _BrandScheme extends GradientPalette {
   const _BrandScheme({
     double baseHue,
-    PaletteBrightness brightness,
+    Brightness brightness,
     int dpCount,
     double variability,
     double offset,
     double saturation,
   }) : super(
           baseHue: baseHue,
-          brightness: brightness == PaletteBrightness.dark
-              ? PaletteBrightness.light
-              : PaletteBrightness.dark,
+          brightness: brightness == Brightness.dark
+              ? Brightness.light
+              : Brightness.dark,
           dpCount: dpCount ?? 5,
           variability: variability ?? 0.05,
-          offset: brightness == PaletteBrightness.dark || baseHue == null
+          offset: brightness == Brightness.dark || baseHue == null
               ? offset ?? 0.05
               : 0.5,
           saturation: saturation,
@@ -123,7 +122,7 @@ abstract class _BrandScheme extends GradientPalette {
 
     const limit = 0.3;
 
-    return luminance > limit && brightness.isDark
+    return luminance > limit && brightness == Brightness.dark
         ? hsl.withLightness(limit)
         : hsl;
   }
@@ -132,7 +131,7 @@ abstract class _BrandScheme extends GradientPalette {
 class _PrimaryColorScheme extends _BrandScheme {
   const _PrimaryColorScheme({
     double baseHue,
-    PaletteBrightness brightness,
+    Brightness brightness,
     int dpCount,
     double variability,
     double offset,
@@ -150,7 +149,7 @@ class _PrimaryColorScheme extends _BrandScheme {
 class _SecondaryColorScheme extends _BrandScheme {
   const _SecondaryColorScheme({
     double baseHue,
-    PaletteBrightness brightness,
+    Brightness brightness,
     int dpCount,
     double variability,
     double offset,
