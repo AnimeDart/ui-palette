@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_palette_example/ui/constants/dp.dart';
-import 'package:ui_palette_example/ui/widgets/app_bar_action.dart';
 
 import '../../navigation/module_navigator.dart';
 import '../../navigation/tab_navigator.dart';
+import '../constants/dp.dart';
+import '../widgets/app_bar_action.dart';
 
 class StreamScreen extends StatefulWidget {
   const StreamScreen({Key key}) : super(key: key);

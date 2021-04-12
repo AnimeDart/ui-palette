@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_palette_example/ui/tabs/stream.dart';
 
 import '../../state/app_global_state.dart';
 import '../tabs/app_tab.dart';
 import '../tabs/home.dart';
 import '../tabs/library.dart';
 import '../tabs/search.dart';
+import '../tabs/stream.dart';
 
 class Root extends StatelessWidget with AppGlobalStatelessMixin {
   const Root({Key key}) : super(key: key);

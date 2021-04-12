@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_palette_example/ui/custom_behaviors/fade_route_transition.dart';
 
 import '../../navigation/app_navigator.dart' as navigator;
 import '../../navigation/module_navigator.dart';
 import '../../navigation/tab_navigator.dart';
+import '../custom_behaviors/fade_route_transition.dart';
 import '../screens/interpolate_colors.dart';
 
 class ColorSelectionController extends ChangeNotifier {

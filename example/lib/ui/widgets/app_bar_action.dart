@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_palette_example/ui/constants/dp.dart';
+import '../constants/dp.dart';
 
 class AppBarAction extends StatelessWidget {
   final Widget icon;
