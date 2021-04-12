@@ -1,225 +1,79 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-import 'theme/my_app_theme.dart';
+import 'navigation/app_navigator.dart' as navigator;
+import 'state/app_global_state.dart';
+import 'state/app_tab_controller.dart';
+import 'ui/constants/dp.dart';
+import 'ui/custom_behaviors/app_scroll_behavior.dart';
+import 'ui/layout/app_bottom_bar.dart';
+import 'ui/layout/app_drawer.dart';
+import 'ui/layout/root.dart';
 
 void main() {
-  runApp(App());
+  runApp(App(appTabController: AppTabController()));
 }
 
-class App extends StatefulWidget {
-  App({Key key}) : super(key: key);
+class App extends StatelessWidget {
+  final AppTabController appTabController;
 
-  @override
-  State<StatefulWidget> createState() => _App();
-}
+  const App({
+    Key key,
+    this.appTabController,
+  }) : super(key: key);
 
-class _App extends State<App> {
-  double spacing(int spacing) => spacing * 2.0;
+  static final monoThemes = <MaterialColor, ThemeData Function(Brightness)>{
+    Colors.cyan: (brightness) {
+      final isDark = brightness == Brightness.dark;
 
-  var _theme = MyAppTheme(brightness: Brightness.light);
+      final primaryColor = Colors.cyan;
 
-  void _toggle() {
-    _theme = MyAppTheme(
-      brightness: _theme.isDark ? Brightness.light : Brightness.dark,
-    );
-    setState(() {});
-  }
+      final scaffoldBackgroundColor =
+          isDark ? Color(0xFF101010) : Color(0xFFF9F9F9);
 
-  final items = [
-    [
-      'Xbox 360',
-      (color) => Icon(Icons.gamepad, color: color, size: 40),
-    ],
-    [
-      'Meditation',
-      (color) => Icon(Icons.military_tech_outlined, color: color, size: 40),
-    ],
-    [
-      'PlayStation',
-      (color) => Icon(Icons.play_arrow, color: color, size: 40),
-    ],
-    [
-      'Whirlpool',
-      (color) => Icon(Icons.bathtub, color: color, size: 40),
-    ],
-  ];
+      final cardColor = isDark ? Color(0xFF222222) : Color(0xFFFFFFFF);
+
+      final bottomNavigationBarBackgroundColor = cardColor;
+
+      return ThemeData(
+        splashFactory: InkRipple.splashFactory,
+        splashColor: Colors.white.withOpacity(.03),
+        highlightColor: Colors.transparent,
+        brightness: brightness,
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
+        primarySwatch: primaryColor,
+        appBarTheme: AppBarTheme(
+          elevation: k1dp,
+          color: bottomNavigationBarBackgroundColor,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          elevation: k1dp,
+          backgroundColor: bottomNavigationBarBackgroundColor,
+        ),
+        fontFamily: 'Comfortaa',
+        cardTheme: CardTheme(color: cardColor),
+      );
+    },
+  };
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigator.rootNavigator,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        splashColor: _theme.surface[0].withAlpha(_theme.surface[0].alpha + 5),
-        highlightColor:
-            _theme.surface[1].withAlpha(_theme.surface[0].alpha + 10),
-        textTheme:
-            ThemeData.light().textTheme.apply(fontFamily: 'Josefin Sans'),
-      ),
-      home: Scaffold(
-        backgroundColor: (() {
-          return _theme.backgroundColor;
-        })(),
-        body: SafeArea(
-          child: Container(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(spacing(10)),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: _theme.surfaceColor,
-                          ),
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.all(spacing(4)),
-                          child: Icon(
-                            Icons.location_on,
-                            color: _theme.primaryColor,
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: spacing(4),
-                            ),
-                            child: Text(
-                              'Berlin, Germany',
-                              style: TextStyle(
-                                color: _theme.text.lowEmphasys,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.notifications_outlined,
-                          color: _theme.primaryColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: spacing(10)),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Hello Robert',
-                      style: TextStyle(
-                        color: _theme.primaryColor,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24,
-                      ),
-                    ),
-                  ),
-                  Divider(height: spacing(3), color: Colors.transparent),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: spacing(10),
-                    ),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "What's your plain today",
-                      style: TextStyle(
-                        color: _theme.text.lowEmphasys,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 200,
-                    color: _theme.elevationOverlay[3],
-                    padding: EdgeInsets.symmetric(
-                      vertical: spacing(15),
-                    ),
-                    margin: EdgeInsets.symmetric(
-                      vertical: spacing(15),
-                    ),
-                    child: ListView(
-                      physics: RangeMaintainingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      children: [
-                        for (var i = 0; i < items.length; i++)
-                          (() {
-                            final last = i == items.length - 1;
-                            final first = i == 0;
-                            final active = first;
-                            final item = items[i];
-
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                right: last ? spacing(10) : spacing(5),
-                                left: first ? spacing(10) : spacing(5),
-                              ),
-                              child: InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  width: 100.0,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(spacing(2)),
-                                    color: first
-                                        ? _theme.primaryColor
-                                        : (() {
-                                            print(HSLColor.fromColor(
-                                                _theme.surfaceColor));
-                                            return _theme.surfaceColor;
-                                          })(),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      (item[1] as Function)(
-                                        active
-                                            ? _theme.backgroundColor
-                                            : _theme.primaryColor,
-                                      ),
-                                      Divider(
-                                        height: spacing(10),
-                                        color: Colors.transparent,
-                                      ),
-                                      Text(
-                                        item[0],
-                                        style: TextStyle(
-                                          color: active
-                                              ? _theme.backgroundColor
-                                              : _theme.primaryColor,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          })()
-                      ],
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: _toggle,
-                    color: _theme.primaryColor,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Toggle Theme',
-                          style: TextStyle(
-                            color: _theme.backgroundColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+      theme: monoThemes[Colors.cyan](Brightness.dark),
+      builder: (context, widget) {
+        return ScrollConfiguration(
+          behavior: AppScrollBehavior(),
+          child: widget,
+        );
+      },
+      home: AppGlobalState(
+        appTabController: appTabController,
+        child: Scaffold(
+          bottomNavigationBar: AppBottomBar(),
+          drawer: AppDrawer(),
+          body: Root(),
         ),
       ),
     );

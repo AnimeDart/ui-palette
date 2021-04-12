@@ -32,3 +32,17 @@ flutter:
         - asset: assets/fonts/JosefinSans-Italic.ttf
         - asset: assets/fonts/JosefinSans-Regular.ttf
           weight: 700
+    - family: New Tegomin
+      fonts:
+        - asset: assets/fonts/NewTegomin-Regular.ttf
+          weight: 400
+    - family: Interstate Bold
+      fonts:
+        - asset: assets/fonts/Interstate-Bold.otf
+          weight: 700
+    - family: Comfortaa
+      fonts:
+        - asset: assets/fonts/Comfortaa-Bold.ttf
+        - asset: assets/fonts/Comfortaa-Light.ttf
+        - asset: assets/fonts/Comfortaa-Regular.ttf
+          weight: 700
